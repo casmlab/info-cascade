@@ -9,8 +9,8 @@
     <div class="span10 well">
         <h2>Game Status</h2>
         <table>
-            <tr> <td>Black guess</td><td> <strong>{{ black }}</strong></td></tr>
-            <tr> <td>Green guess</td><td> <strong>{{ green }}</strong></td></tr>
+            <tr> <td>Black guesses</td><td> <strong>{{ black }}</strong></td></tr>
+            <tr> <td>Green guesses</td><td> <strong>{{ green }}</strong></td></tr>
             <tr><td>Current turn</td><td> <strong>{{game.current_turn}} / {{game.max_turns}}</strong></td></tr>
             <div class="progress progress-striped active">
                 <div class="bar" style="width: {{progress}}%;"></div>
@@ -19,7 +19,7 @@
     </div>
     <div class="span10 well">
 
-        <h3>Rule: {{rule}}</h3>
+        <h3>{{rule}}</h3>
         <a class="btn" data-toggle="modal" href="#myModal" >Draw!</a>
         <br>
         <div class="modal hide pop in" id="myModal">
@@ -42,9 +42,9 @@
             <input type="text" name="player" placeholder="Your Name" /> 
             </p>
             <p>
-            <label for="guess">Guess</label>
-            <a href="#" id="green" rel="popover" data-content="Click to submit" data-original-title="Guess Green?"><img width="40%" src="/static/img/green.jpg" /></a>
-            <a href="#" id="black" rel="popover" data-content="Click to submit" data-original-title="Guess Black?"><img width="40%" src="/static/img/black.jpg" /></a>
+            <label for="guess">Click to guess</label>
+            <a href="#" id="green" rel="popover" data-content="Click to submit" data-original-title="Guess Green?"><img width="30%" src="/static/img/green.jpg" /></a>
+            <a href="#" id="black" rel="popover" data-content="Click to submit" data-original-title="Guess Black?"><img width="30%" src="/static/img/black.jpg" /></a>
             </p>
             <input type="hidden" name="drawn" value={{ drawn }} /> 
         </form>
@@ -68,7 +68,7 @@
                 player: $('input[name="player"]').val(),
                 guess: "g",
             },
-            function (data) {alert("submit success")});
+            function (data) {alert("Guess submitted!");window.location='/';});
         });
 
         $("#black").popover({placement: "top"});
@@ -83,7 +83,7 @@
                 player: $('input[name="player"]').val(),
                 guess: "b",
             },
-            function (data) {alert("submit success")});
+            function (data) {alert("Guess submitted!");window.location='/';});
         });
     });
 </script>

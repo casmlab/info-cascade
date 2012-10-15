@@ -11,10 +11,10 @@
         data.addColumn('string', 'Action');
         data.addColumn('number', 'count');
         data.addRows([
-                ['Drawn Black Guessed Black', {{ analysis['bb'] }}],
-                ['Drawn Green Guessed Green', {{ analysis['gg'] }} ],
-                ['Drawn Black Guessed Green', {{ analysis['bg'] }}],
-                ['Drawn Green Guessed Black', {{ analysis['gb'] }}]
+                ['Drew Black Guessed Black', {{ analysis['bb'] }}],
+                ['Drew Green Guessed Green', {{ analysis['gg'] }} ],
+                ['Drew Black Guessed Green', {{ analysis['bg'] }}],
+                ['Drew Green Guessed Black', {{ analysis['gb'] }}]
                 ]);
 
         var options = {
@@ -29,8 +29,8 @@ google.setOnLoadCallback(drawChart2);
 function drawChart2() {
     var data = new google.visualization.DataTable();
     data.addColumn('number', 'Turn');
-    data.addColumn('number', 'Guess Black');
-    data.addColumn('number', 'Guess Green');
+    data.addColumn('number', 'Black');
+    data.addColumn('number', 'Green');
     data.addRows([
             {% for item in data_set %}
             
@@ -40,7 +40,8 @@ function drawChart2() {
             ]);
 
     var options = {
-title: 'Chart 2'
+title: 'Guesses over time',
+colors: ['black','green']
     };
 
     var chart = new google.visualization.LineChart(document.getElementById('chart2'));
@@ -91,9 +92,9 @@ $(function () {
 
     <div class="alert alert-info">
         {% if game.contains == 'bbg' %}
-        <h2>Black: 2, Green: 1</h2>
+        <h2>Black Majority</h2>
         {% else %}
-        <h2>Green: 2, Black: 1</h2>
+        <h2>Green Majority</h2>
         {% endif %}
     </div>
     <div class="row">

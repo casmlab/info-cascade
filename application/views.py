@@ -34,9 +34,9 @@ def create_game():
         
         uri = '/playgame/{}'.format(key)
         if init == "bgg":
-            contains = "Two Green one Black"
+            contains = "2 Green 1 Black"
         else:
-            contains = "Two Black one Green"
+            contains = "2 Black 1 Green"
         return render_template('create.html', form=form, uri=uri, contains=contains) 
     return render_template('create.html', form=form)
 
@@ -99,7 +99,7 @@ def play_game(key):
         flash("{}. This game is finished. View result at... ".format(game.title), "warning") 
         return redirect(url_for('show_game', key = key)) 
 
-    rule = "There are three marbles, 2 black 1 green or 1 back 2 green"
+    rule = "There are three marbles, 2 black 1 green or 1 black 2 green"
 
     # Get plays belongs to the game
     plays = db.GqlQuery("SELECT * "
@@ -129,8 +129,8 @@ def play_game(key):
         # Select * from play where parent = <key> 
         play_key = play.put()
         
-        # resirect to home
-        flash("You game result is summited successfully", "success")
+        # redirect to home
+        flash("Your game result was submitted successfully.", "success")
         return redirect(url_for('index'))
     # Handle GET
     progress = game.current_turn / (1.0 * game.max_turns) * 100
